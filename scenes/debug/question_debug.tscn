@@ -1,0 +1,329 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/additional/answer_box.tscn" type="PackedScene" id=1]
+[ext_resource path="res://resources/fonts/default_font.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://resources/answer_box.png" type="Texture" id=3]
+[ext_resource path="res://scenes/debug/question_debug.gd" type="Script" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://utils/video_wrapper.tscn" type="PackedScene" id=6]
+
+
+
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 70
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="rectBgColor" type="ColorRect" parent="."]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 1033.0
+margin_bottom = 610.0
+color = Color( 1, 0.858824, 0.854902, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="rectBg" type="NinePatchRect" parent="."]
+modulate = Color( 1, 0.862745, 0.862745, 1 )
+anchor_left = 0.0927734
+anchor_top = -0.01
+anchor_right = 0.979492
+anchor_bottom = 0.565
+texture = ExtResource( 3 )
+region_rect = Rect2( -8.61003, -10.234, 608.087, 216.299 )
+patch_margin_left = 36
+patch_margin_top = 34
+patch_margin_right = 28
+patch_margin_bottom = 28
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ctrlImageQuestion" type="Control" parent="."]
+visible = false
+anchor_left = 0.121094
+anchor_top = 0.0316667
+anchor_right = 0.956055
+anchor_bottom = 0.481667
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="labQuestionTextSmall" type="Label" parent="ctrlImageQuestion"]
+anchor_left = 0.00116959
+anchor_top = 0.862962
+anchor_right = 0.99883
+anchor_bottom = 1.13333
+margin_right = 6.10352e-05
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Doloret sit amet Doloret sit amet Dol sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet "
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="rectImage" type="TextureRect" parent="ctrlImageQuestion"]
+anchor_left = 0.0105263
+anchor_top = 0.0111111
+anchor_right = 0.98
+anchor_bottom = 0.858814
+margin_right = 0.0999756
+margin_bottom = 0.119995
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="ctrlNormalQuestion" type="Control" parent="."]
+visible = false
+margin_left = 125.0
+margin_top = 18.0
+margin_right = 981.0
+margin_bottom = 318.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="labQuestionText" type="Label" parent="ctrlNormalQuestion"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet "
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ctrlVideoQuestion" type="Control" parent="."]
+visible = false
+anchor_left = 0.117188
+anchor_top = 0.025
+anchor_right = 0.954102
+anchor_bottom = 0.543333
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="vidVideoPlayer" parent="ctrlVideoQuestion" instance=ExtResource( 6 )]
+anchor_top = 0.0160772
+anchor_right = 0.612602
+anchor_bottom = 0.983923
+
+[node name="labQuestionRight" type="Label" parent="ctrlVideoQuestion"]
+anchor_left = 0.607935
+anchor_top = 0.180064
+anchor_right = 1.0
+anchor_bottom = 0.983923
+margin_top = 1.52588e-05
+margin_right = 6.10352e-05
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Doloret sit amet Doloret sit amet Dol sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet Doloret sit amet "
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="rectBgTimer" type="NinePatchRect" parent="."]
+modulate = Color( 0.635294, 1, 0.603922, 1 )
+anchor_left = 0.863515
+anchor_top = 0.00706309
+anchor_right = 0.993397
+anchor_bottom = 0.11873
+texture = ExtResource( 3 )
+region_rect = Rect2( -8.61003, -4, 608.61, 210.065 )
+patch_margin_left = 35
+patch_margin_top = 33
+patch_margin_right = 28
+patch_margin_bottom = 34
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="labTimerText" type="Label" parent="rectBgTimer"]
+anchor_left = 0.0431035
+anchor_top = 0.104477
+anchor_right = 0.948278
+anchor_bottom = 0.925367
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="contAnswers" type="GridContainer" parent="."]
+anchor_left = 0.108573
+anchor_top = 0.545973
+anchor_right = 0.973807
+anchor_bottom = 0.985973
+custom_constants/hseparation = 26
+columns = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="ctrlAnswer1" parent="contAnswers" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 430.0
+margin_bottom = 130.0
+
+[node name="ctrlAnswer2" parent="contAnswers" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 456.0
+margin_right = 886.0
+margin_bottom = 130.0
+
+[node name="ctrlAnswer3" parent="contAnswers" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 134.0
+margin_right = 430.0
+margin_bottom = 264.0
+
+[node name="ctrlAnswer4" parent="contAnswers" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 456.0
+margin_top = 134.0
+margin_right = 886.0
+margin_bottom = 264.0
+
+[node name="contPlayerIcons" type="GridContainer" parent="."]
+anchor_left = 0.0195313
+anchor_top = 0.0283333
+anchor_right = 0.0878906
+anchor_bottom = 0.811667
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="rectPause" type="ColorRect" parent="."]
+margin_left = 10.0
+margin_top = 554.0
+margin_right = 107.0
+margin_bottom = 579.0
+color = Color( 1, 0.843137, 0.572549, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="labPause" type="Label" parent="rectPause"]
+margin_left = -0.619568
+margin_top = -9.88458
+margin_right = 92.3804
+margin_bottom = 24.1154
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Pause"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="rectSplash" type="ColorRect" parent="."]
+visible = false
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 1033.0
+margin_bottom = 610.0
+color = Color( 1, 0.521569, 0.505882, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="labSplashTimer" type="Label" parent="rectSplash"]
+anchor_left = 0.012464
+anchor_top = 0.0225806
+anchor_right = 0.989453
+anchor_bottom = 0.982258
+margin_top = -9.53674e-07
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 15.0
+margin_top = 506.822
+margin_right = 52.0
+margin_bottom = 544.822
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 58.8811
+margin_top = 506.881
+margin_right = 95.8811
+margin_bottom = 544.881
+text = ">"
+[connection signal="gui_input" from="rectPause/labPause" to="." method="_on_labPause_gui_input"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]

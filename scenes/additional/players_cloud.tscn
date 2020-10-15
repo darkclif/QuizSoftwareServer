@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/fonts/dfont_big_menu.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/additional/players_cloud.gd" type="Script" id=3]
+
+
+
+[node name="players_cloud" type="Control"]
+anchor_left = 0.000976563
+anchor_top = -0.00166667
+anchor_right = 0.0244141
+anchor_bottom = 0.0416667
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PlayersCounter" type="Label" parent="."]
+anchor_left = -5.392
+anchor_top = -1.301
+anchor_right = 5.441
+anchor_bottom = 1.353
+margin_left = -0.00279236
+margin_top = -0.00646591
+margin_right = 0.00479126
+margin_bottom = -0.0105324
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0.788235, 0.788235, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.121569, 0.121569, 1 )
+text = "0 players"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -13,5 +13,5 @@ data_*/
 # My ignore files
 question_images/
 question_videos/
-./questions.txt
-./save.json
+questions.txt
+save.json

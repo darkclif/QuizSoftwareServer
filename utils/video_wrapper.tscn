@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/progress_under.png" type="Texture" id=1]
+[ext_resource path="res://utils/video_wrapper.gd" type="Script" id=2]
+[ext_resource path="res://resources/pause_off.png" type="Texture" id=3]
+[ext_resource path="res://resources/pause_on.png" type="Texture" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 0.993333
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="vidVideoPlayer" type="VideoPlayer" parent="."]
+anchor_left = 0.000976563
+anchor_right = 0.999
+anchor_bottom = 0.951
+margin_right = 0.0239258
+margin_bottom = 0.204163
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="progTimeToPlay" type="TextureProgress" parent="."]
+modulate = Color( 1, 0.290196, 0.290196, 1 )
+anchor_top = 0.955
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.179871
+margin_bottom = 0.000183105
+texture_progress = ExtResource( 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnPause" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -65.0
+margin_top = -84.9998
+margin_right = -22.0
+margin_bottom = -43.9998
+toggle_mode = true
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="btnPause" to="." method="_on_btnPause_toggled"]

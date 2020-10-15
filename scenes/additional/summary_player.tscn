@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://resources/fonts/font_chocolate_normal.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://resources/font_chocolate_bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/additional/player_card.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/additional/summary_player.gd" type="Script" id=4]
+
+
+[sub_resource type="MeshTexture" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 43
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 33
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 0.129883
+anchor_bottom = 0.678333
+rect_min_size = Vector2( 133, 407 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="progPoints" type="TextureProgress" parent="."]
+modulate = Color( 1, 0.443137, 0.443137, 1 )
+anchor_left = 0.312042
+anchor_top = 0.156632
+anchor_right = 0.575095
+anchor_bottom = 0.78561
+margin_right = 0.0139923
+margin_bottom = 0.00598145
+rect_min_size = Vector2( 30, 200 )
+value = 100.0
+texture_progress = SubResource( 1 )
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="contIcon" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.110921
+anchor_top = 0.728514
+anchor_right = 0.772575
+anchor_bottom = 0.94473
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+
+[node name="labStartGame" type="Label" parent="."]
+anchor_left = 0.00751879
+anchor_top = 0.002457
+anchor_right = 0.909773
+anchor_bottom = 0.0982801
+margin_bottom = 3.8147e-06
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0 pts"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="labLastPoints" type="Label" parent="."]
+anchor_left = 0.225564
+anchor_top = 0.0859951
+anchor_right = 0.939848
+anchor_bottom = 0.159705
+margin_bottom = 7.62939e-06
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.219608, 1, 0.176471, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "+0 pts"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}

@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/base/main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/additional/players_cloud.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/fonts/dfont_big_menu.tres" type="DynamicFont" id=3]
+[ext_resource path="res://resources/tools.png" type="Texture" id=4]
+[ext_resource path="res://resources/powered_by.png" type="Texture" id=5]
+
+[node name="main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="rectBgColor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.858824, 0.854902, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="rectBgColor2" type="ColorRect" parent="."]
+anchor_top = 0.853
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = 0.199982
+margin_right = 9.0
+margin_bottom = 10.0
+color = Color( 1, 0.694118, 0.686275, 1 )
+
+[node name="labStartGame" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -326.48
+margin_top = -78.6989
+margin_right = -5.48291
+margin_bottom = -9.69885
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Start Game >"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayersCloud" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.5
+margin_top = -18.0
+margin_right = 20.5
+margin_bottom = 18.0
+
+[node name="btnSettings2" type="TextureButton" parent="."]
+modulate = Color( 1, 0.678431, 0.678431, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -73.0
+margin_bottom = 73.0
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 8.32486
+margin_top = 4.22462
+margin_right = 146.325
+margin_bottom = 140.225
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="gui_input" from="labStartGame" to="." method="_on_labStartGame_gui_input"]
+[connection signal="pressed" from="btnSettings2" to="." method="_on_btnSettings_pressed"]

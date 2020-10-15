@@ -1,0 +1,195 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://resources/fonts/default_font.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://resources/font_chocolate_bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/additional/player_card.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/additional/end_game_player_card.gd" type="Script" id=4]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 55
+outline_size = 1
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 29
+outline_size = 1
+outline_color = Color( 1, 0.898039, 0.835294, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_left = 0.00195313
+anchor_top = 0.00333333
+anchor_right = 0.456055
+anchor_bottom = 0.298333
+rect_min_size = Vector2( 465, 177 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = -0.0129032
+anchor_top = 0.129905
+anchor_right = 0.984946
+anchor_bottom = 0.999962
+rect_rotation = -2.4
+color = Color( 0.964706, 0.796078, 0.760784, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="labPlace" type="Label" parent="."]
+anchor_left = 0.133
+anchor_top = 0.686
+anchor_right = 0.133
+anchor_bottom = 0.686
+margin_left = -40.845
+margin_top = -24.422
+margin_right = 41.155
+margin_bottom = 24.578
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "1st"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="labScore" type="Label" parent="."]
+anchor_left = 0.143945
+anchor_top = 0.847
+anchor_right = 0.144
+anchor_bottom = 0.847
+margin_left = -45.3452
+margin_top = -13.9168
+margin_right = 45.6291
+margin_bottom = 14.0832
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.101961, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "(0 pts)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ctrlIcon" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.152
+anchor_top = 0.013
+anchor_right = 0.152
+anchor_bottom = 0.583813
+margin_left = -52.0578
+margin_top = 0.0338385
+margin_right = 51.9422
+
+[node name="gridStats" type="GridContainer" parent="."]
+anchor_left = 0.341935
+anchor_top = 0.5
+anchor_right = 0.342
+anchor_bottom = 0.5
+margin_top = -72.5
+margin_right = 254.97
+margin_bottom = 74.5
+custom_constants/vseparation = 3
+custom_constants/hseparation = 49
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="gridStats"]
+margin_right = 173.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Correct answers ratio"
+
+[node name="labRatio" type="Label" parent="gridStats"]
+margin_left = 222.0
+margin_right = 231.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+
+[node name="Label5" type="Label" parent="gridStats"]
+margin_top = 30.0
+margin_right = 173.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Average answer time"
+
+[node name="labAverage" type="Label" parent="gridStats"]
+margin_left = 222.0
+margin_top = 30.0
+margin_right = 231.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+
+[node name="Label4" type="Label" parent="gridStats"]
+margin_top = 60.0
+margin_right = 173.0
+margin_bottom = 87.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Best correct streak"
+
+[node name="labBestStreak" type="Label" parent="gridStats"]
+margin_left = 222.0
+margin_top = 60.0
+margin_right = 231.0
+margin_bottom = 87.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+
+[node name="Label2" type="Label" parent="gridStats"]
+margin_top = 90.0
+margin_right = 173.0
+margin_bottom = 117.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Worst incorrect streak"
+
+[node name="labWorstStreak" type="Label" parent="gridStats"]
+margin_left = 222.0
+margin_top = 90.0
+margin_right = 231.0
+margin_bottom = 117.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+
+[node name="Label3" type="Label" parent="gridStats"]
+margin_top = 120.0
+margin_right = 173.0
+margin_bottom = 147.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Blunders"
+
+[node name="labBlunders" type="Label" parent="gridStats"]
+margin_left = 222.0
+margin_top = 120.0
+margin_right = 231.0
+margin_bottom = 147.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"

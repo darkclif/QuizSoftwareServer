@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/fonts/default_font.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://resources/font_chocolate_bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://resources/icons/mask_shader.tres" type="Material" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://scenes/additional/player_card_small.gd" type="Script" id=5]
+
+
+[sub_resource type="DynamicFont" id=4]
+size = 65
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 17
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="ControlSize" type="Control"]
+anchor_left = -0.0343553
+anchor_top = -0.0983333
+anchor_right = 0.034004
+anchor_bottom = 0.035
+margin_left = 0.179855
+margin_top = -3.8147e-06
+margin_right = 0.179855
+margin_bottom = -3.8147e-06
+rect_min_size = Vector2( 70, 80 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Icon" type="TextureRect" parent="."]
+material = ExtResource( 3 )
+anchor_left = 0.10627
+anchor_top = 0.0912479
+anchor_right = 0.887092
+anchor_bottom = 0.678204
+margin_top = 1.19209e-07
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="labAnswerStatus" type="Label" parent="."]
+visible = false
+anchor_left = -0.142986
+anchor_top = -0.0585266
+anchor_right = 0.157014
+anchor_bottom = 0.678973
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.00784314, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "v"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="labConnected" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.601743
+anchor_top = 0.415706
+anchor_right = 0.971606
+anchor_bottom = 0.715706
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "C!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="NickLabel" type="Label" parent="."]
+anchor_left = -0.4
+anchor_top = 0.6375
+anchor_right = 1.4
+anchor_bottom = 0.8875
+margin_right = 7.62939e-06
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 0.411765, 0.411765, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player"
+align = 1
+valign = 1
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}

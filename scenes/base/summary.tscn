@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/fonts/dfont_big_menu.tres" type="DynamicFont" id=1]
+[ext_resource path="res://resources/pause_off.png" type="Texture" id=2]
+[ext_resource path="res://resources/pause_on.png" type="Texture" id=3]
+[ext_resource path="res://scenes/base/summary.gd" type="Script" id=4]
+
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rectBgColor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.858824, 0.854902, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="rectBgColor2" type="ColorRect" parent="."]
+anchor_top = 0.853
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = 0.199982
+margin_right = 9.0
+margin_bottom = 10.0
+color = Color( 1, 0.694118, 0.686275, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="labInfo" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.115
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Summary:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="labCounter" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -136.0
+margin_top = -80.0
+margin_right = -12.0
+margin_bottom = -11.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="hboxPlayers" type="HBoxContainer" parent="."]
+anchor_left = 0.015625
+anchor_top = 0.126667
+anchor_right = 0.978516
+anchor_bottom = 0.836667
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="btnPause" type="TextureButton" parent="."]
+anchor_left = 0.052
+anchor_top = 1.0
+anchor_right = 0.052
+anchor_bottom = 1.0
+margin_left = -35.6091
+margin_top = -80.8591
+margin_right = 35.3909
+margin_bottom = -13.8591
+toggle_mode = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="btnPause" to="." method="_on_btnPause_toggled"]

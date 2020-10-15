@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://utils/console.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/debug/settings.gd" type="Script" id=2]
+
+[node name="settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="rectBgColor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0.858824, 0.854902, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="console" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.022
+anchor_top = 0.035
+anchor_right = 0.982
+anchor_bottom = 0.967
+margin_left = 0.471998
+margin_top = 0.0
+margin_right = -216.568
+margin_bottom = -0.200012
+
+[node name="btnStartTCP" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -206.728
+margin_top = -252.556
+margin_right = -17.7275
+margin_bottom = -197.556
+rect_pivot_offset = Vector2( 96.1479, 25.7566 )
+text = "TCP Server Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnStartUDP" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -207.283
+margin_top = -188.484
+margin_right = -18.2826
+margin_bottom = -133.484
+rect_pivot_offset = Vector2( 96.1479, 25.7566 )
+text = "UDP Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnExit" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -207.688
+margin_top = -79.0272
+margin_right = -18.6877
+margin_bottom = -24.0272
+rect_pivot_offset = Vector2( 96.1479, 25.7566 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="btnStartTCP" to="." method="_on_btn_broadcast_pressed"]
+[connection signal="pressed" from="btnStartUDP" to="." method="_on_btn_broadcast2_pressed"]
+[connection signal="pressed" from="btnExit" to="." method="_on_btn_exit_pressed"]
