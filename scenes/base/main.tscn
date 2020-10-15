@@ -49,6 +49,7 @@ text = "Start Game >"
 align = 1
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -71,18 +72,20 @@ margin_bottom = 73.0
 texture_normal = ExtResource( 4 )
 expand = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 8.32486
-margin_top = 4.22462
-margin_right = 146.325
-margin_bottom = 140.225
+margin_left = 9.51407
+margin_top = 6.60304
+margin_right = 147.514
+margin_bottom = 142.603
 texture = ExtResource( 5 )
 expand = true
 stretch_mode = 6
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 [connection signal="gui_input" from="labStartGame" to="." method="_on_labStartGame_gui_input"]

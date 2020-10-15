@@ -11,7 +11,7 @@ export_presets.cfg
 data_*/
 
 # My ignore files
-question_images/
-question_videos/
-questions.txt
+#question_images/
+#question_videos/
+#questions.txt
 save.json

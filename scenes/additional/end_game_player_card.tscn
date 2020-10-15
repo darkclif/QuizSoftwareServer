@@ -5,7 +5,6 @@
 [ext_resource path="res://scenes/additional/player_card.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/additional/end_game_player_card.gd" type="Script" id=4]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 55
 outline_size = 1

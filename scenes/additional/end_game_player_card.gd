@@ -20,7 +20,11 @@ func _ready():
 ####################################################################
 #	PUBLIC
 ####################################################################
-func init(player, place : int):
+func init(player = null, place : int = 0):
+	# player = null only while debugging
+	if !player:
+		player = GameState.get_dummy_player()
+	
 	# Set icon
 	$ctrlIcon.init(player)
 	
