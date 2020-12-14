@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/base/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/additional/players_cloud.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/fonts/dfont_big_menu.tres" type="DynamicFont" id=3]
 [ext_resource path="res://resources/tools.png" type="Texture" id=4]
 [ext_resource path="res://resources/powered_by.png" type="Texture" id=5]
+[ext_resource path="res://resources/font_chocolate_bold.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 2
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 6 )
 
 [node name="main" type="Control"]
 anchor_right = 1.0
@@ -12,6 +20,22 @@ anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="openFileDialog" type="FileDialog" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -441.0
+margin_top = 46.0
+margin_right = -81.0
+margin_bottom = 491.0
+window_title = "Load save file"
+mode = 0
+access = 2
+current_dir = "/1_Coding/1_godot/QuizSoft/QuizSoftServer"
+current_path = "/1_Coding/1_godot/QuizSoft/QuizSoftServer/"
+__meta__ = {
 "_edit_use_anchors_": false
 }
 
@@ -76,6 +100,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="btnOpenFile" type="TextureButton" parent="."]
+modulate = Color( 1, 0.678431, 0.678431, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -73.0
+margin_top = 64.0
+margin_bottom = 137.0
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 9.51407
 margin_top = 6.60304
@@ -88,5 +126,20 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="labInfo" type="Label" parent="."]
+anchor_left = 0.00390625
+anchor_top = 0.796667
+anchor_right = 0.694336
+anchor_bottom = 0.845
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+[connection signal="file_selected" from="openFileDialog" to="." method="_on_openFileDialog_file_selected"]
 [connection signal="gui_input" from="labStartGame" to="." method="_on_labStartGame_gui_input"]
 [connection signal="pressed" from="btnSettings2" to="." method="_on_btnSettings_pressed"]
+[connection signal="pressed" from="btnOpenFile" to="." method="_on_btnOpenFile_pressed"]

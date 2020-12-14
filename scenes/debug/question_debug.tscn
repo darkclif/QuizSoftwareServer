@@ -7,10 +7,6 @@
 [ext_resource path="res://icon.png" type="Texture" id=5]
 [ext_resource path="res://utils/video_wrapper.tscn" type="PackedScene" id=6]
 
-
-
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 22
 font_data = ExtResource( 2 )

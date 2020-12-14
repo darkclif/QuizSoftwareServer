@@ -58,6 +58,7 @@ func init(players_cloud, player):
 	CloudPtr = players_cloud
 	PlayerRef = player
 	self.update_data()
+	self.update_connected()
 
 func update_data():
 	# Set this card data

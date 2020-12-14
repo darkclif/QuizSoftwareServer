@@ -87,6 +87,12 @@ func get_serialized():
 	
 	return PlayerData
 
+func load_from_serialized(dict):
+	self.DeviceUID 	= dict['uid']
+	self.Nick 		= dict['name']
+	self.IconId 	= dict['icon_id']
+	self.Points 	= dict['points']
+
 ####################################################################
 #	STATISTICS
 ####################################################################

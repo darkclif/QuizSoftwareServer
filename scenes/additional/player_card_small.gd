@@ -64,6 +64,7 @@ func init(player, other_icons):
 	self.PlayerRef = player
 	self.OtherIconsList = other_icons
 	self.update_data()
+	self.update_connected()
 	
 func go_to(pos):
 	# Go to position of answer box

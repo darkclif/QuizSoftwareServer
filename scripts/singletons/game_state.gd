@@ -98,6 +98,52 @@ func save_to_file():
 	# Save to file
 	SaveFile.store_buffer(JSON.print(SaveData).to_utf8())
 	SaveFile.close()
+	
+func load_from_file(file_src : String):
+	var LoadFile = File.new()
+	LoadFile.open(file_src, File.READ)
+	
+	if not LoadFile.is_open():
+		self.add_console_line("[ERROR] Cannot load from given file '%s'." % file_src)
+		return false
+	
+	# Load JSON from file
+	var saveText = LoadFile.get_as_text()
+	var resultJSON = JSON.parse(saveText)
+	
+	if resultJSON.error != OK:
+		self.add_console_line("[ERROR] Save file loaded but cannot parse JSON. '%s'" % file_src)
+		return false
+	
+	# Assign save
+	var saveDict = resultJSON.result
+	self.AnsweredQuestionsIds = saveDict['questions']
+	
+	for pData in saveDict['players']:
+		self.add_console_line("[INFO] Loaded player '%s' from a save file." % pData['name'])
+		var player = self.get_player_with_uid(pData['uid'])
+		
+		if player != null:
+			# Update existing player information 
+			# (player may connect right before we load save-file)
+			player.load_from_serialized(pData)
+		else:
+			# Just add new player and wait for him to connect
+			player = playerClass.new()
+			player.load_from_serialized(pData)
+			player.Connected = false
+			NetworkState.create_tcp_connection(player)
+			
+			self.players.append(player)
+			self.emit_signal("LOGIC_NEW_PLAYER", player)
+
+	return true
+
+func get_player_with_uid(uid):
+	for p in self.players:
+		if p.DeviceUID == uid:
+			return p
+	return null
 
 ####################################################################
 #	DEBUG
@@ -183,8 +229,23 @@ func transition_main_to_question():
 	self.CurrentQuestionID = 0
 	
 	# Load question database
-	QuestionDatabase = ResourceManager.get_question_database()
-	QuestionDatabase.shuffle()
+	self.QuestionDatabase = ResourceManager.get_question_database()
+	self.QuestionDatabase.shuffle()
+	
+	# Delete answered questions (if save-file loaded)
+	var TrimmedQuestionDatabase = []
+	for q in self.QuestionDatabase:
+		if not q.has('id'):
+			self.add_console_line("[WARNING] Question loaded from file does not have 'id' field.")
+			continue
+	
+		if not(int(q['id']) in self.AnsweredQuestionsIds):
+			TrimmedQuestionDatabase.append(q)
+
+	if TrimmedQuestionDatabase.size() > 0:
+		self.QuestionDatabase = TrimmedQuestionDatabase
+	else:
+		self.add_console_line("[WARNING] Probably loaded save with all questions answered. Skipping this data.")
 
 	# Push scene
 	if self.CurrentQuestionID < self.QuestionDatabase.size():

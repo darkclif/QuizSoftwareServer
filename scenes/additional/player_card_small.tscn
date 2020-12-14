@@ -6,8 +6,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://scenes/additional/player_card_small.gd" type="Script" id=5]
 
-
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 size = 65
 use_mipmaps = true
 use_filter = true
@@ -61,7 +60,7 @@ anchor_left = -0.142986
 anchor_top = -0.0585266
 anchor_right = 0.157014
 anchor_bottom = 0.678973
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.00784314, 1, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "v"

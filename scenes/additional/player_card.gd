@@ -36,6 +36,7 @@ func init(player):
 	# Other cards refs
 	PlayerRef = player
 	self.update_data()
+	self.update_connected()
 
 func update_data():
 	# Set this card data

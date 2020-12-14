@@ -102,13 +102,19 @@ func _process(delta):
 func add_console_line(line):
 	GameState.add_console_line(line)
 
+func create_tcp_connection(player):
+	# When you load save-file you need to create tcp connection for
+	# each loaded player that is not yet connected to game.
+	if not tcpPlayers.has(player):
+		tcpPlayers[player] = null
+
 func move_connection_to_main_list(ip, player):
 	# Move connection from awaiting list to players list
 	if not tcpAwaiting.has(ip):
 		add_console_line("Cannot assign connection to player. Invalid IP adress. (%s)" % str(ip))
 		return
 
-	# Correct
+	# Correct tcp socket
 	tcpPlayers[player] = tcpAwaiting[ip]
 	tcpAwaiting.erase(ip)
 
@@ -195,6 +201,10 @@ func tcp_packet_handle():
 	# Player connections
 	for player in self.tcpPlayers:
 		var conn = tcpPlayers[player]
+		
+		# Skip present players but 
+		if not conn:
+			continue
 		
 		# Inform that the player lost connection
 		var ConnectedFlag = conn.get_stream_peer().is_connected_to_host()

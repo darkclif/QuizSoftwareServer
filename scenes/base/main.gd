@@ -37,3 +37,13 @@ func _on_labStartGame_gui_input(event):
 
 func _on_btnSettings_pressed():
 	self.show_settings()
+
+func _on_btnOpenFile_pressed():
+	$"openFileDialog".popup()
+
+func _on_openFileDialog_file_selected(path):
+	if GameState.load_from_file(path):
+		$"labInfo".text = "Save loaded: %s" % str(path)
+	else:
+		$"labInfo".text = "Failed to load, check console: %s" % str(path)
+	

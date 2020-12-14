@@ -1,7 +1,7 @@
 extends Control
 
 # Scenes
-const PlayerIconSmallScene = preload("res://scenes/in_game/player_card_small.tscn")
+const PlayerIconSmallScene = preload("res://scenes/additional/player_card_small.tscn")
 const COLOR_BLUE = Color8(150.0, 180.0, 255.0, 255.0)
 
 # Question internal states
