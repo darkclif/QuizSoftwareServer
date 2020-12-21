@@ -41,7 +41,7 @@ var CurrentQuestionID : int = -1
 var CurrentGameState = GameState.IDLE
 
 # For save
-const SaveFileSrc = "res://save_%d.json"
+const SaveFileName = "save_%d.json"
 var AnsweredQuestionsIds = []
 
 # Game
@@ -82,8 +82,10 @@ func get_current_question_data():
 		return self.QuestionDatabase[self.CurrentQuestionID]
 
 func save_to_file():
+	var DirPath = Settings.ensure_dir(Settings.get_root_folder().plus_file("saves"))
 	var SaveFile = File.new()
-	SaveFile.open(SaveFileSrc % OS.get_unix_time(), File.WRITE)
+	var SaveFilePath = DirPath.plus_file(SaveFileName % OS.get_unix_time())
+	SaveFile.open(SaveFilePath, File.WRITE)
 
 	# Serialize player data
 	var PlayersData = []

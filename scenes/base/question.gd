@@ -299,11 +299,21 @@ func init_image_question():
 	$ctrlImageQuestion/labQuestionTextSmall.text = self.QuestionText
 	
 	# Set image
-	var ImageSrc = "res://question_images/" + str(self.QuestionData['img'])
+	var ImageName = str(self.QuestionData['img'])
+	var ImageSrc = Settings.get_root_folder().plus_file("question_images").plus_file(ImageName)
 	
 	var FileCheck = File.new()
 	if FileCheck.file_exists(ImageSrc):
-		$ctrlImageQuestion/rectImage.texture = load(ImageSrc)
+		var Img = Image.new()
+		var ITex = ImageTexture.new()
+		
+		if Img.load(ImageSrc):
+			GameState.add_console_line("[LOGIC][ERROR] Cannot load image to a question. Src: '%s'" % (ImageSrc))
+			
+		if ITex.create_from_image(Img):
+			GameState.add_console_line("[LOGIC][ERROR] Cannot load image to a question. Src: '%s'" % (ImageSrc))
+			
+		$ctrlImageQuestion/rectImage.texture = ITex
 	else:
 		GameState.add_console_line("[LOGIC][ERROR] Cannot load image to a question. Src: '%s'" % (ImageSrc))
 
@@ -315,7 +325,8 @@ func init_video_question():
 	$ctrlVideoQuestion/labQuestionRight.text = self.QuestionText
 	
 	# Set video
-	var VideoSrc = "res://question_videos/" + str(self.QuestionData['vid'])
+	var VideoName = str(self.QuestionData['vid'])
+	var VideoSrc = Settings.get_root_folder().plus_file("question_videos").plus_file(VideoName)
 	
 	var FileCheck = File.new()
 	if FileCheck.file_exists(VideoSrc):

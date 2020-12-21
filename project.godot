@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Settings="*res://scripts/singletons/settings.gd"
 GameState="*res://scripts/singletons/game_state.gd"
 NetworkState="*res://scripts/singletons/network_state.gd"
 ResourceManager="*res://scripts/singletons/resource_manager.gd"
