@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://resources/fonts/default_font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://utils/video_wrapper.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://resources/pause_on.png" type="Texture" id=8]
 [ext_resource path="res://scenes/additional/answer_box.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/base/question.gd" type="Script" id=10]
+[ext_resource path="res://resources/font_chocolate_bold.ttf" type="DynamicFontData" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 23
@@ -22,6 +23,12 @@ size = 32
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 70
@@ -69,7 +76,6 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": true
 }
 
@@ -109,13 +115,14 @@ __meta__ = {
 
 [node name="ctrlNormalQuestion" type="Control" parent="."]
 visible = false
-margin_left = 125.0
-margin_top = 18.0
-margin_right = 981.0
-margin_bottom = 318.0
+anchor_left = 0.12207
+anchor_top = 0.03
+anchor_right = 0.958008
+anchor_bottom = 0.53
+margin_bottom = 3.05176e-05
 __meta__ = {
 "_edit_lock_": true,
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="labQuestionText" type="Label" parent="ctrlNormalQuestion"]
@@ -132,7 +139,6 @@ align = 1
 valign = 1
 autowrap = true
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -160,7 +166,6 @@ align = 1
 valign = 1
 autowrap = true
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": true
 }
 
@@ -175,7 +180,6 @@ texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": true
 }
 
@@ -272,6 +276,23 @@ toggle_mode = true
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="labQuestionCounter" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.4 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -243.75
+margin_top = 24.5407
+margin_right = -138.75
+margin_bottom = 60.5407
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0 / 0"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

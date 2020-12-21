@@ -269,6 +269,9 @@ func init(question):
 	self.CorrectAnswerId = Permutation.rfind(0)
 	self.QuestionData['answers'] = self.AnswerList
 	
+	# Set question counter
+	$labQuestionCounter.text = "%d/%d" % [GameState.QuestionsCount, GameState.QuestionsLoaded]
+	
 	self.setup_question()
 	self.set_answer_boxes_texts()
 

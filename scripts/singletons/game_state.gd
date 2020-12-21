@@ -35,6 +35,8 @@ enum GameState {
 #	"answers": [4 : String]
 #}
 var QuestionDatabase = []
+var QuestionsCount = 1
+var QuestionsLoaded = 0
 
 const SUMMARY_DELAY : int = 4 # 0 = no summary
 var CurrentQuestionID : int = -1
@@ -172,6 +174,7 @@ func push_next_question_scene():
 	
 	if NextQuestion.has('id'):
 		self.AnsweredQuestionsIds.append(NextQuestion['id'])
+		self.QuestionsCount = len(self.AnsweredQuestionsIds)
 	
 	var NewScene = QuestionScene.instance()
 	NewScene.init(NextQuestion)
@@ -233,6 +236,9 @@ func transition_main_to_question():
 	# Load question database
 	self.QuestionDatabase = ResourceManager.get_question_database()
 	self.QuestionDatabase.shuffle()
+
+	self.QuestionsCount = len(self.AnsweredQuestionsIds)
+	self.QuestionsLoaded = len(self.QuestionDatabase)
 	
 	# Delete answered questions (if save-file loaded)
 	var TrimmedQuestionDatabase = []
@@ -243,7 +249,7 @@ func transition_main_to_question():
 	
 		if not(int(q['id']) in self.AnsweredQuestionsIds):
 			TrimmedQuestionDatabase.append(q)
-
+	
 	if TrimmedQuestionDatabase.size() > 0:
 		self.QuestionDatabase = TrimmedQuestionDatabase
 	else:
