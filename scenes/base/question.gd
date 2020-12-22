@@ -48,6 +48,7 @@ class PlayerQuestionData:
 	var AnswerTime : float = 0.0
 	var IconRef = null
 	var Ready : bool = false
+	var PlayerRef = null
 
 var PlayersDataDict : Dictionary = {} # PlayerRef -> PlayerQuestionData
 var PlayerIconList : Array = []
@@ -76,6 +77,7 @@ func _ready():
 	# Attach events
 	GameState.connect("LOGIC_PLAYER_ANSWERED", self, "_on_player_give_answer")
 	GameState.connect("LOGIC_PLAYER_READY", self, "_on_player_ready")
+	GameState.connect("LOGIC_PLAYER_CONNECTED_CHANGE", self, "_on_player_connected_change")
 	
 	# Prepare array of answer boxes to map question number to control
 	self.AnswerBoxes.append($contAnswers/ctrlAnswer1)
@@ -94,6 +96,7 @@ func _ready():
 		
 		var NewPlayerData = PlayerQuestionData.new()
 		NewPlayerData.IconRef = NewIcon
+		NewPlayerData.PlayerRef = p
 		PlayersDataDict[p] = NewPlayerData
 		
 		IconContainer.add_child(NewIcon)
@@ -247,6 +250,25 @@ func push_icon_to_answers():
 			
 			Data.IconRef.rect_global_position = GlobalPos
 
+func get_active_player_count():
+	var cnt : int = 0
+	for p in self.PlayersDataDict:
+		var player = self.PlayersDataDict[p]
+		if player.PlayerRef.Connected:
+			cnt += 1 
+	return cnt
+	
+func skip_time():
+	var ActivePlayers = self.get_active_player_count()
+
+	if self.CurrentState == QuestionState.MAIN_PHASE:
+		if ActivePlayers == self.PlayerAnsweredCount:
+			self.CurrentTime = min(self.CurrentTime, 5.0)
+
+	if self.CurrentState == QuestionState.POST_WAIT_PHASE:
+		if ActivePlayers == self.PlayerReadyCount:
+			self.CurrentTime = min(self.CurrentTime, 5.0)
+
 ####################################################################
 #	PUBLIC
 ####################################################################
@@ -367,10 +389,12 @@ func _on_player_give_answer(player_ref, question_id, answer_id):
 	PlayerData.IconRef.set_answer_indicator(true)
 	
 	self.PlayerAnsweredCount += 1
-	if self.PlayerAnsweredCount == self.PlayersDataDict.size():
-		self.CurrentTime = min(self.CurrentTime, 5.0)
-	
+	self.skip_time()
 
+func _on_player_connected_change(player, flag):
+	# Check for preceed
+	self.skip_time()
+	
 func _on_player_ready(player_ref):
 	# Accept only in waiting phase
 	if self.CurrentState != QuestionState.POST_WAIT_PHASE:
@@ -389,12 +413,12 @@ func _on_player_ready(player_ref):
 		self.PlayerReadyCount += 1
 	
 	# Check for preceed
-	if self.PlayersDataDict.size() == self.PlayerReadyCount:
-		self.CurrentTime = min(self.CurrentTime, 5.0)
-
+	self.skip_time()
+	
 func _on_btnPause_toggled(button_pressed):
 	if self.CurrentState == QuestionState.PAUSE_MODE:
 		self.CurrentState = self.StateBeforePause
+		self.skip_time()
 	else:
 		self.StateBeforePause = self.CurrentState
 		self.CurrentState = QuestionState.PAUSE_MODE
