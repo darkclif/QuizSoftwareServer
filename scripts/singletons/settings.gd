@@ -1,15 +1,13 @@
 extends Node
 
 const DEBUG_MODE : bool = true
+const DEBUG_ROOT_FOLDER : bool = false
 
-func _ready():
-	pass # Replace with function body.
-	
 func is_debug_mode():
 	return self.DEBUG_MODE
 	
 func get_root_folder():
-	if is_debug_mode():
+	if DEBUG_ROOT_FOLDER:
 		return "res://"
 	else:
 		return OS.get_executable_path().get_base_dir()

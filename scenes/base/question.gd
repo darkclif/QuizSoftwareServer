@@ -59,21 +59,16 @@ var CurrentState = QuestionState.PRE_SPLASH
 var StateBeforePause = CurrentState
 var PreventNewAnswers : bool = false
 
+# DEBUG
+# Load separate question database
+var dbgDebugQuestionDatabase = null
+var dbgQuestionCounter : int = 0
+var dbgPreviewMode : bool = false
+
 ####################################################################
 #	BASE
 ####################################################################
 func _ready():
-	# DEBUG:
-#	var VideoSrc = "res://question_videos/test.webm"
-#
-#	var Stream = VideoStreamWebm.new()
-#	Stream.set_file(VideoSrc)
-#
-#	$ctrlVideoQuestion/vidVideoPlayer.set_stream(Stream)
-	
-	# Prepare starting phase
-	self.setup_pre_phase()
-	
 	# Attach events
 	GameState.connect("LOGIC_PLAYER_ANSWERED", self, "_on_player_give_answer")
 	GameState.connect("LOGIC_PLAYER_READY", self, "_on_player_ready")
@@ -100,7 +95,18 @@ func _ready():
 		PlayersDataDict[p] = NewPlayerData
 		
 		IconContainer.add_child(NewIcon)
+
+	if self.dbgPreviewMode:
+		self.CurrentState = QuestionState.PAUSE_MODE
+
+		self.dbgDebugQuestionDatabase = ResourceManager.get_question_database()
+		$btnDbgPrev.visible = true
+		$btnDbgNext.visible = true
+		$btnDbgReturn.visible = true
 		
+		self.init(self.dbgDebugQuestionDatabase[self.dbgQuestionCounter])
+	else:
+		self.setup_pre_phase()
 
 func _process(delta):
 	if self.CurrentState == QuestionState.PRE_SPLASH:
@@ -274,8 +280,7 @@ func skip_time():
 ####################################################################
 func init(question):
 	# Make some data shortcuts
-	self.QuestionData = question # we will send this data to a player soon
-	
+	self.QuestionData = question # this data will be sent in main phase
 	self.QuestionId = question["id"]
 	self.QuestionText = question["question"]
 	
@@ -284,6 +289,7 @@ func init(question):
 	var Permutation = range(4)
 	Permutation.shuffle()
 	
+	self.AnswerList = []
 	for p in Permutation:
 		self.AnswerList.append(TmpAnswerList[p])
 	
@@ -292,12 +298,22 @@ func init(question):
 	self.QuestionData['answers'] = self.AnswerList
 	
 	# Set question counter
-	$labQuestionCounter.text = "%d/%d" % [GameState.QuestionsCount, GameState.QuestionsLoaded]
+	if self.dbgPreviewMode:
+		$labQuestionCounter.text = "%d/%d" % [1 + self.dbgQuestionCounter, len(self.dbgDebugQuestionDatabase)]
+	else:
+		$labQuestionCounter.text = "%d/%d" % [GameState.QuestionsCount, GameState.QuestionsLoaded]
 	
 	self.setup_question()
 	self.set_answer_boxes_texts()
 
 func setup_question():
+	# Hide previous
+	if self.dbgPreviewMode:
+		$ctrlNormalQuestion.visible = false
+		$ctrlVideoQuestion.visible = false
+		$ctrlVideoQuestion/vidVideoPlayer.stop()
+		$ctrlImageQuestion.visible = false
+	
 	# Check question type
 	if self.QuestionData.has('img'):
 		self.init_image_question()
@@ -422,3 +438,19 @@ func _on_btnPause_toggled(button_pressed):
 	else:
 		self.StateBeforePause = self.CurrentState
 		self.CurrentState = QuestionState.PAUSE_MODE
+
+####################################################################
+#	DEBUG
+####################################################################
+func _on_btnDbgNext_pressed():
+	var DbLen = len(self.dbgDebugQuestionDatabase)
+	self.dbgQuestionCounter = (self.dbgQuestionCounter + 1) % DbLen 
+	self.init(self.dbgDebugQuestionDatabase[self.dbgQuestionCounter])
+
+func _on_btnDbgPrev_pressed():
+	var DbLen = len(self.dbgDebugQuestionDatabase)
+	self.dbgQuestionCounter = (DbLen + self.dbgQuestionCounter - 1) % DbLen
+	self.init(self.dbgDebugQuestionDatabase[self.dbgQuestionCounter])
+
+func _on_btnDbgReturn_pressed():
+	self.queue_free()

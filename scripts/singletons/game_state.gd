@@ -224,6 +224,12 @@ func transition_summary_to_question():
 	
 	self.CurrentGameState = GameState.SHOW_QUESTION
 
+# Main -> DebugQuestion
+func transition_main_to_dbg_question():
+	var NewScene = QuestionScene.instance()
+	NewScene.dbgPreviewMode = true
+	self.push_scene(NewScene)
+	
 # Main -> Summary
 func transition_main_to_question():
 	# Start

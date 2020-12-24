@@ -2,7 +2,7 @@ extends Node
 
 # Consts
 const IconsTexture = preload("res://resources/icons/icons.png")
-const QuestionsFile : String = "res://questions.txt"
+const QuestionsFile : String = "questions.txt"
 
 # Icons data
 var ICON_SIZE = 200
@@ -49,12 +49,13 @@ func get_question_database():
 	var ReturnQuestions = self.DummyQuestionList
 	
 	# File does not exit
-	if !QFile.file_exists(QuestionsFile):
+	var QuestionFilePath = Settings.get_root_folder().plus_file(QuestionsFile)
+	if !QFile.file_exists(QuestionFilePath):
 		GameState.add_console_line("[FATAL] Question file does not exist.")
 		self.DummyQuestionList[0]['question'] += "(ERROR: File does not exist.)"
 		return ReturnQuestions
 	
-	QFile.open(QuestionsFile, File.READ)
+	QFile.open(QuestionFilePath, File.READ)
 	
 	var Content = QFile.get_as_text()
 	var Result = JSON.parse(Content)

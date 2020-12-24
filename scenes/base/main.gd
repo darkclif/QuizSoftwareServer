@@ -6,6 +6,9 @@ var TmpPlayers = []
 #	BASIC
 ####################################################################
 func _ready():
+	if Settings.is_debug_mode():
+		$btnDebugQuestions.visible = true
+	
 	$labStartGame.mouse_filter = Control.MOUSE_FILTER_PASS
 
 	# Events
@@ -40,6 +43,9 @@ func _on_btnSettings_pressed():
 
 func _on_btnOpenFile_pressed():
 	$"openFileDialog".popup()
+
+func _on_btnDebugQuestions_pressed():
+	GameState.transition_main_to_dbg_question()
 
 func _on_openFileDialog_file_selected(path):
 	if GameState.load_from_file(path):

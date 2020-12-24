@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/base/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/additional/players_cloud.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://resources/tools.png" type="Texture" id=4]
 [ext_resource path="res://resources/powered_by.png" type="Texture" id=5]
 [ext_resource path="res://resources/font_chocolate_bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://resources/save_icon.png" type="Texture" id=7]
+[ext_resource path="res://resources/question_prev_icon.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -104,10 +106,27 @@ __meta__ = {
 modulate = Color( 1, 0.678431, 0.678431, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -73.0
-margin_top = 64.0
-margin_bottom = 137.0
-texture_normal = ExtResource( 4 )
+margin_left = -62.6432
+margin_top = 71.7621
+margin_right = -8.64319
+margin_bottom = 125.762
+texture_normal = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="btnDebugQuestions" type="TextureButton" parent="."]
+visible = false
+modulate = Color( 1, 0.678431, 0.678431, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -64.1189
+margin_top = 132.059
+margin_right = -8.1189
+margin_bottom = 188.059
+texture_normal = ExtResource( 8 )
 expand = true
 __meta__ = {
 "_edit_lock_": true,
@@ -143,3 +162,4 @@ __meta__ = {
 [connection signal="gui_input" from="labStartGame" to="." method="_on_labStartGame_gui_input"]
 [connection signal="pressed" from="btnSettings2" to="." method="_on_btnSettings_pressed"]
 [connection signal="pressed" from="btnOpenFile" to="." method="_on_btnOpenFile_pressed"]
+[connection signal="pressed" from="btnDebugQuestions" to="." method="_on_btnDebugQuestions_pressed"]

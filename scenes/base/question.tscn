@@ -24,13 +24,13 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 40
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 11 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 70
 use_mipmaps = true
 use_filter = true
@@ -91,10 +91,14 @@ __meta__ = {
 }
 
 [node name="vidVideoPlayer" parent="ctrlVideoQuestion" instance=ExtResource( 2 )]
-anchor_left = 0.0140023
-anchor_top = 0.0418007
-anchor_right = 0.610268
-anchor_bottom = 0.951769
+anchor_left = 0.312
+anchor_top = 0.497
+anchor_right = 0.312
+anchor_bottom = 0.497
+margin_left = -255.384
+margin_top = -141.567
+margin_right = 255.616
+margin_bottom = 141.433
 
 [node name="labQuestionRight" type="Label" parent="ctrlVideoQuestion"]
 anchor_left = 0.614936
@@ -283,16 +287,63 @@ __meta__ = {
 [node name="labQuestionCounter" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0.4 )
 anchor_left = 1.0
+anchor_top = 0.071
 anchor_right = 1.0
+anchor_bottom = 0.071
 margin_left = -243.75
-margin_top = 24.5407
+margin_top = -18.0593
 margin_right = -138.75
-margin_bottom = 60.5407
-custom_fonts/font = SubResource( 4 )
+margin_bottom = 17.9407
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0 / 0"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnDbgPrev" type="Button" parent="."]
+visible = false
+anchor_left = 0.052
+anchor_top = 1.0
+anchor_right = 0.052
+anchor_bottom = 1.0
+margin_left = -32.4827
+margin_top = -137.49
+margin_right = -1.48271
+margin_bottom = -109.49
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnDbgNext" type="Button" parent="."]
+visible = false
+anchor_left = 0.057
+anchor_top = 1.0
+anchor_right = 0.057
+anchor_bottom = 1.0
+margin_left = -2.27619
+margin_top = -137.541
+margin_right = 28.7238
+margin_bottom = -109.541
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="btnDbgReturn" type="Button" parent="."]
+visible = false
+anchor_left = 0.057
+anchor_top = 1.0
+anchor_right = 0.057
+anchor_bottom = 1.0
+margin_left = -39.368
+margin_top = -105.0
+margin_right = 29.632
+margin_bottom = -82.0
+text = "exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -310,7 +361,7 @@ __meta__ = {
 [node name="labSplashTimer" type="Label" parent="rectSplash"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "0"
@@ -321,3 +372,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="toggled" from="btnPause" to="." method="_on_btnPause_toggled"]
+[connection signal="pressed" from="btnDbgPrev" to="." method="_on_btnDbgPrev_pressed"]
+[connection signal="pressed" from="btnDbgNext" to="." method="_on_btnDbgNext_pressed"]
+[connection signal="pressed" from="btnDbgReturn" to="." method="_on_btnDbgReturn_pressed"]
