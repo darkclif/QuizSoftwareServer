@@ -2,7 +2,7 @@
 
 Quiz application created with Godot engine. Use client-server architecture. Intended to use in local trusted networks (packet's data contain plain, unencrypted text).
 
-**Client side:** [github repo](https://github.com/darkclif/QuizSoftwareClient) 
+**Client side:** [github repo](https://github.com/darkclif/QuizSoftClient) 
 
 **Server side:** [github repo](https://github.com/darkclif/QuizSoftwareServer)
 
