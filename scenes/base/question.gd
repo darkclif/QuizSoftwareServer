@@ -23,7 +23,7 @@ enum QuestionType {
 # Consts
 const PRE_PHASE_TIME : float = 3.5
 const MAIN_PHASE_TIME : float = 60.0
-const POST_PHASE_TIME : float = 10.0
+const POST_PHASE_TIME : float = 7.0
 const POST_WAIT_PHASE_TIME : float = 40.0
 
 # FOR DEBUG:
